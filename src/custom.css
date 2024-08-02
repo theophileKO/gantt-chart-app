@@ -1,0 +1,71 @@
+.timeline {
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .timeline-body {
+    position: relative;
+  }
+  
+  .task-row {
+    position: relative;
+    height: 30px;
+    margin-bottom: 10px; /* Increased space between rows */
+    border-left: 4px solid transparent; /* Space for division color coding */
+  }
+  
+  .task-label {
+    position: absolute;
+    left: -140px;
+    width: 120px;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 14px; /* Adjusted font size */
+    color: #333; /* Darker color for better readability */
+  }
+  
+  .task-timeline-bar {
+    position: relative;
+    height: 24px;
+    overflow: hidden;
+    background: linear-gradient(to right, #4caf50, #81c784); /* Smooth gradient for task bars */
+    border-radius: 12px; /* Rounded corners for a modern look */
+    transition: all 0.3s ease; /* Smooth transitions */
+  }
+  
+  .task-timeline-bar .task-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 8px; /* Adjusted padding */
+    font-size: 12px; /* Smaller font size for better fit */
+    color: #fff; /* White text for better contrast */
+  }
+  
+  .task-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .timeline-header-cell {
+    flex-shrink: 0;
+    background: #f0f0f0; /* Light grey background */
+    color: #333; /* Dark text */
+    border: 1px solid #ddd; /* Border for separation */
+    font-size: 14px; /* Adjusted font size */
+    padding: 10px; /* Padding for better spacing */
+  }
+  
+  .timeline-header-cell.text-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

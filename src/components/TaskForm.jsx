@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color';
+import { useSelector } from 'react-redux';
 
 const TaskForm = ({ task, onSubmit, onCancel }) => {
+  const tasks = useSelector(state => state.tasks);
   const [formData, setFormData] = useState(task);
   const [showColorPicker, setShowColorPicker] = useState(false);
 
@@ -77,6 +79,20 @@ const TaskForm = ({ task, onSubmit, onCancel }) => {
           />
         )}
       </div>
+      <div>
+        <label>Parent Task:</label>
+        <select
+          name="parentId"
+          value={formData.parentId || ''}
+          onChange={handleChange}
+          className="w-full p-2 border rounded"
+        >
+          <option value="">None</option>
+          {tasks.filter(task => !task.parentId).map(task => (
+            <option key={task.id} value={task.id}>{task.name}</option>
+          ))}
+        </select>
+      </div>
       <div className="flex space-x-2">
         <button type="submit" className="p-2 bg-blue-500 text-white rounded">Save</button>
         <button type="button" onClick={onCancel} className="p-2 bg-gray-300 rounded">Cancel</button>
@@ -87,15 +103,28 @@ const TaskForm = ({ task, onSubmit, onCancel }) => {
 
 TaskForm.propTypes = {
   task: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     name: PropTypes.string.isRequired,
     start: PropTypes.instanceOf(Date).isRequired,
     end: PropTypes.instanceOf(Date).isRequired,
     progress: PropTypes.number.isRequired,
     color: PropTypes.string,
-  }).isRequired,
+    parentId: PropTypes.number,
+  }),
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+};
+
+TaskForm.defaultProps = {
+  task: {
+    id: null,
+    name: '',
+    start: new Date(),
+    end: new Date(),
+    progress: 0,
+    color: '#3498db',
+    parentId: null,
+  },
 };
 
 export default TaskForm;
